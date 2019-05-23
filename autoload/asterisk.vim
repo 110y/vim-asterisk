@@ -153,10 +153,10 @@ function! s:convert_2_word_pattern_4_visual(pattern, config) abort
         let line = getline(l)
         let before = line[: col - 2]
         let outer = matchstr(before, '.$')
-        if text =~# '^\k' && ((!empty(outer) && len(outer) != len(head)) ||
-        \   (!is_head_multibyte && (col == 1 || before !~# '\k$')))
-            let pre = '\<'
-        endif
+        " if text =~# '^\k' && ((!empty(outer) && len(outer) != len(head)) ||
+        " \   (!is_head_multibyte && (col == 1 || before !~# '\k$')))
+        "     let pre = '\<'
+        " endif
         let tail = matchstr(text, '.$')
         let is_tail_multibyte = 1 < len(tail)
         let [l, col] = tail_pos
@@ -164,10 +164,10 @@ function! s:convert_2_word_pattern_4_visual(pattern, config) abort
         let line = getline(l)
         let after = line[col :]
         let outer = matchstr(after, '^.')
-        if text =~# '\k$' && ((!empty(outer) && len(outer) != len(tail)) ||
-        \   (!is_tail_multibyte && (col == len(line) || after !~# '^\k')))
-            let post = '\>'
-        endif
+        " if text =~# '\k$' && ((!empty(outer) && len(outer) != len(tail)) ||
+        " \   (!is_tail_multibyte && (col == len(line) || after !~# '^\k')))
+        "     let post = '\>'
+        " endif
     endif
     let text = substitute(escape(text, '\' . type), "\n", '\\n', 'g')
     let text = substitute(text, "\r", '\\r', 'g')
@@ -356,4 +356,3 @@ unlet s:save_cpo
 " vim: expandtab softtabstop=4 shiftwidth=4
 " vim: foldmethod=marker
 " }}}
-
